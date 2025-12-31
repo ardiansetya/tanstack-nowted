@@ -5,9 +5,18 @@ import { FileText, Home, LogIn, LogOut, Settings } from "lucide-react";
 import { Separator } from "./ui/separator";
 
 const Header = () => {
-  const user = authClient.useSession();
-  console.log(user);
+  const { data: session } = authClient.useSession();
+
   const navigate = useNavigate();
+  const handleLogout = async () => {
+    await authClient.signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          navigate({ to: "/signin" });
+        },
+      },
+    });
+  };
 
   return (
     <header className="sticky top-0  z-50 w-full border-b bg-background">
@@ -16,35 +25,31 @@ const Header = () => {
         <div className="text-lg font-semibold tracking-tight">Nowted</div>
 
         <nav className="flex items-center gap-2">
-          <Button variant="ghost" className="gap-2">
-            <Home className="h-4 w-4" />
-            Home
+          <Button variant="ghost" className="gap-2" asChild>
+            <Link to="/">
+              <Home className="h-4 w-4" />
+              Home
+            </Link>
           </Button>
 
-          <Button variant="ghost" className="gap-2">
-            <FileText className="h-4 w-4" />
-            Notes
+          <Button variant="ghost" className="gap-2" asChild>
+            <Link to="/notes">
+              <FileText className="h-4 w-4" />
+              Notes
+            </Link>
           </Button>
 
-          <Button variant="ghost" className="gap-2">
-            <Settings className="h-4 w-4" />
-            Settings
+          <Button variant="ghost" className="gap-2" asChild>
+            <Link to="/settings">
+              <Settings className="h-4 w-4" />
+              Settings
+            </Link>
           </Button>
 
           <Separator orientation="vertical" className="h-6 mx-2" />
 
-          {user.data ? (
-            <Button
-              variant="default"
-              onClick={async () =>
-                await authClient.signOut({
-                  fetchOptions: {
-                    onSuccess: () => {
-                      navigate({ to: "/signin" });
-                    },
-                  },
-                })
-              }>
+          {session ? (
+            <Button variant="default" onClick={handleLogout}>
               <LogOut />
               Logout
             </Button>
