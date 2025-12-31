@@ -1,13 +1,25 @@
-import { authMiddleware } from '@/middleware/auth';
-import { createFileRoute } from '@tanstack/react-router'
+import { getUser } from "@/server/auth-server";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/notes/")({
   component: RouteComponent,
-  server: {
-    middleware: [authMiddleware],
+  beforeLoad: async () => {
+    const userId = await getUser();
+    return {
+      userId,
+    };
+  },
+  loader: async ({ context }) => {
+    if (!context.userId) {
+      throw redirect({ to: `/signin` });
+    }
+
+    return {
+      userId: context.userId,
+    };
   },
 });
 
 function RouteComponent() {
-  return <div>Hello "/notes/"!</div>
+  return <div>jkontol</div>;
 }

@@ -19,7 +19,7 @@ import { authClient } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
 import { signUpSchema } from "@/validators/signUpSchema";
 import { useForm } from "@tanstack/react-form";
-import { Link, redirect, useNavigate } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -36,7 +36,7 @@ export function RegisterForm({
     setIsPasswordVisible(!isPasswordVisible);
   };
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const form = useForm({
     defaultValues: {
@@ -64,7 +64,7 @@ export function RegisterForm({
           },
           onSuccess: () => {
             toast.success("Register successfully");
-            navigate({to: "/signin"})
+            navigate({ to: "/signin" });
           },
         }
       );

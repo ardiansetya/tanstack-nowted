@@ -19,7 +19,7 @@ import { authClient } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
 import { signInSchema } from "@/validators/signInSchema";
 import { useForm } from "@tanstack/react-form";
-import { Link, redirect, useNavigate } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";

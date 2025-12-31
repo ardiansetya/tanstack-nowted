@@ -32,7 +32,7 @@ const Header = () => {
             </Link>
           </Button>
 
-          <Button variant="ghost" className="gap-2" asChild>
+          {/* <Button variant="ghost" className="gap-2" asChild>
             <Link to="/notes">
               <FileText className="h-4 w-4" />
               Notes
@@ -44,7 +44,7 @@ const Header = () => {
               <Settings className="h-4 w-4" />
               Settings
             </Link>
-          </Button>
+          </Button> */}
 
           <Separator orientation="vertical" className="h-6 mx-2" />
 

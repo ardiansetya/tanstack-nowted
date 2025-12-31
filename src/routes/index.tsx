@@ -1,6 +1,6 @@
 import FeatureLandingPage from "@/components/shared/FeatureLandingPage";
 import { Button } from "@/components/ui/button";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Server, Shield, Sparkles, Waves, Zap } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -27,7 +27,11 @@ function App() {
           </p>
 
           <div className="flex justify-center gap-4">
-            <Button size="lg">Get Started</Button>
+              <Button size="lg" asChild>
+            <Link to="/notes">
+                Get Started
+            </Link>
+              </Button>
             <Button size="lg" variant="outline">
               View Demo
             </Button>
